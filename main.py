@@ -49,26 +49,28 @@ def aplicarVagaCandidato():
     x = input("digite a vaga: ")
     vaga = "vaga" + x
 
-    # print(vagas[vaga]["palavraChave"])
-    # print(candidatos["candidato1"]["miniBio"])
     palavraChave = vagas[vaga]["palavraChave"]
-
     
+    quantidaCurriculo = 0
+    aplicarmVaga = []
     for candidato in candidatos:
-        print(candidato)
         curriculo = candidatos[candidato]["miniBio"]
-        print(curriculo)    
 
-        if palavraChave in curriculo:
-             print("ok")  
-        else:
-            print("off")
+        print(candidato) 
+        for x in palavraChave:
+
+            if x in curriculo:
+                print(candidato,curriculo,"ok")
+                aplicarmVaga.append(candidato)
+                quantidaCurriculo
+                break
+            else:
+                print(candidato,curriculo,"off")
+                break
 
 
-
+    print(len(candidatos))      
+                
 
 aplicarVagaCandidato()
-
-
-
 
