@@ -14,8 +14,9 @@
 
  
 vagas ={"vaga1":{"palavraChave":"python"}}
-candidatos ={"candidato1":{"miniBio":"ola eu sei python"},"candidato2":{"miniBio":"ola eu sei js e python"}}
-num = 0
+candidatos ={"candidato1":{"miniBio":"ola eu sei python"},
+             "candidato2":{"miniBio":"ola eu sei js e python"},
+             "candidato3": {"miniBio": "eu nao sei nada"}}
 
 
 
@@ -46,31 +47,32 @@ num = 0
 
 
 def aplicarVagaCandidato():
-    x = input("digite a vaga: ")
-    vaga = "vaga" + x
-
-    palavraChave = vagas[vaga]["palavraChave"]
+    vaga = input("Digite o número da vaga (ou 0 para sair): ")
+    if vaga == "0":
+        return
     
-    quantidaCurriculo = 0
-    aplicarmVaga = []
-    for candidato in candidatos:
-        curriculo = candidatos[candidato]["miniBio"]
+    vaga_key = "vaga" + vaga
+    if vaga_key not in vagas:
+        print("Vaga não encontrada.")
+        return
 
-        print(candidato) 
-        for x in palavraChave:
+    palavraChave = vagas[vaga_key]["palavraChave"]
+    
 
-            if x in curriculo:
-                print(candidato,curriculo,"ok")
-                aplicarmVaga.append(candidato)
-                quantidaCurriculo
-                break
-            else:
-                print(candidato,curriculo,"off")
-                break
+    candidatosAceitos = {}
+    for candidato,info in candidatos.items():
+        curriculo = info["miniBio"]
 
+        aceito = all(keyword in curriculo for keyword in palavraChave)
+        
 
-    print(len(candidatos))      
-                
+        if aceito:
+            candidatosAceitos[candidato] = info
+
+    print("Candidatos aceitos para a vaga:", len(candidatosAceitos))
+    for candidato, info in candidatosAceitos.items():
+        print("Candidato:", candidato)
+        print("MiniBio:", info["miniBio"])
 
 aplicarVagaCandidato()
 
